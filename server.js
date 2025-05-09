@@ -11,7 +11,7 @@ const app = express();
 app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = [
-      "https://weather-app-frontend-six-indol.vercel.app/"
+      "https://weather-app-frontend-six-indol.vercel.app"
     ];
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);

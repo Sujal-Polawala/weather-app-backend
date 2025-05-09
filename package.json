@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "dev": "concurrently \"nodemon server.js\" \"python ClothSuggestion.py\"",
-  "start": "concurrently \"node server.js\" \"python ClothSuggestion.py\"",
+    "dev": "concurrently \"node server.js\" \"python ClothSuggestion.py\"",
+    "start": "concurrently \"node server.js\" \"python ClothSuggestion.py\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

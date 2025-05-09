@@ -11,7 +11,7 @@ const app = express();
 app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = [
-      "http://localhost:3000",
+      "http://localhost:5174",
       "https://weather-app-frontend-bice-five.vercel.app"
     ];
     if (!origin || allowedOrigins.includes(origin)) {

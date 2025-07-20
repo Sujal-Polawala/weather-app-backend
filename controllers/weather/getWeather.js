@@ -3,13 +3,16 @@ const { fetchWeatherData } = require("../../services/weatherService");
 
 const getWeather = async (req, res) => {
   try {
-    const cityName = req.params.city.toLowerCase().trim();
-    const data = await fetchWeatherData(cityName);
+    const location = req.params.city.trim();
+    const data = await fetchWeatherData(location);
 
+    // For coordinates, we need to use the city name from the API response
+    const cityName = data.name.toLowerCase().trim();
+    
     const updatedWeather = await Weather.findOneAndUpdate(
       { city: cityName },
       {
-        city: data.name.toLowerCase().trim(),
+        city: cityName,
         state: data.state || '',
         temperature: data.main.temp,
         feels_like: data.main.feels_like,

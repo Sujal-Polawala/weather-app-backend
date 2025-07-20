@@ -3,14 +3,27 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const fetchWeatherData = async (city) => {
+const fetchWeatherData = async (location) => {
   try {
     const url = process.env.WEATHER_URL;
-    const params = {
-      q: city,
+    
+    // Check if location is coordinates (lat,lon format)
+    const isCoordinates = /^-?\d+\.?\d*,-?\d+\.?\d*$/.test(location);
+    
+    let params = {
       appid: process.env.WEATHER_API_KEY,
       units: "metric",
     };
+
+    if (isCoordinates) {
+      // Use lat and lon parameters for coordinates
+      const [lat, lon] = location.split(',');
+      params.lat = lat;
+      params.lon = lon;
+    } else {
+      // Use q parameter for city name
+      params.q = location;
+    }
 
     const response = await axios.get(url, { params });
     return response.data;
